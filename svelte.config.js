@@ -7,6 +7,9 @@ const config = {
 		runes: ({ filename }) => (filename.split(/[/\\]/).includes('node_modules') ? undefined : true)
 	},
 	kit: {
+		paths: {
+			base: '/reeminders'
+		},
 		adapter: adapter({
 			pages: 'build',
 			assets: 'build',
