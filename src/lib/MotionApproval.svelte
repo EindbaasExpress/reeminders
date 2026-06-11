@@ -82,15 +82,19 @@ onMount(() => {
 
 </script>
 
-<div>
-    <button 
-        id="btn_reqPermission"
-        style="display: {MotionApproval.granted ? 'none' : 'block'};padding: 2em"
-        onclick={checkMotionPermission}
-    >
-        Hey! This will be much better with sensors. Allow?
-    </button>
-    <div id="output_message">{MotionApproval.output_message}</div>
+<div style="position: fixed; bottom: 1.5rem; left: 50%; transform: translateX(-50%); z-index: 10; text-align: center;">
+    {#if MotionApproval.granted === false}
+        <button 
+            id="btn_reqPermission"
+            style="padding: 1em 2em"
+            onclick={checkMotionPermission}
+        >
+            Hey! This will be much better with sensors. Allow?
+        </button>
+    {/if}
+    {#if MotionApproval.output_message}
+        <div id="output_message">{MotionApproval.output_message}</div>
+    {/if}
     {#if MotionApproval.debugInfo}
         <div id="debug_info" style="font-size: 0.75em; opacity: 0.6">{MotionApproval.debugInfo}</div>
     {/if}
