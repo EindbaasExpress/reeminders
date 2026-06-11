@@ -1,5 +1,4 @@
 <script lang="ts">
-	import { onMount } from 'svelte';
 	import QuoteDisplay from '$lib/QuoteDisplay.svelte';
 	import { getRandomQuote, type Quote } from '$lib/quotes';
 	import MotionApproval from '$lib/MotionApproval.svelte';

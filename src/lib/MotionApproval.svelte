@@ -1,7 +1,10 @@
 <script lang="ts">
+    import { onMount } from 'svelte';
+
     interface MotionApprovalState {
         output_message: string | undefined,
-        granted: boolean | null
+        granted: boolean | null,
+        debugInfo: string | undefined,
     }
 
     let { onshake } = $props();
@@ -9,6 +12,7 @@
     let MotionApproval: MotionApprovalState = $state({
         output_message: undefined,
         granted: null,
+        debugInfo: undefined,
     });
 
 function setMotionListeners() {
@@ -20,13 +24,18 @@ function setMotionListeners() {
 
     // MOTION LISTENER
     window.addEventListener('devicemotion', event => {
-        console.log('Device motion event: %O', event)
+        const alpha = Math.abs(event.rotationRate?.alpha ?? 0);
+        const beta  = Math.abs(event.rotationRate?.beta  ?? 0);
+        const gamma = Math.abs(event.rotationRate?.gamma ?? 0);
+
+        // Show live sensor values on-screen to help debug on mobile
+        MotionApproval.debugInfo = `α:${alpha.toFixed(1)} β:${beta.toFixed(1)} γ:${gamma.toFixed(1)}`;
 
         // SHAKE EVENT
         // Using rotationRate, which essentially is velocity,
         // we check each axis (alpha, beta, gamma) whether they cross a threshold (e.g. 256).
         // Lower = more sensitive, higher = less sensitive. 256 works nice, imho.
-        if (((event.rotationRate?.alpha ?? 0) > 256 || (event.rotationRate?.beta ?? 0) > 256 || (event.rotationRate?.gamma ?? 0) > 256)) {
+        if (alpha > 256 || beta > 256 || gamma > 256) {
             MotionApproval.output_message = "SHAKEN!"
             onshake?.();
             setTimeout(() => {
@@ -62,9 +71,14 @@ async function checkMotionPermission() {
     // All other browsers
     } else {
         setMotionListeners()
+        MotionApproval.granted = true
     }
 
 }
+
+onMount(() => {
+    checkMotionPermission()
+})
 
 </script>
 
@@ -76,5 +90,8 @@ async function checkMotionPermission() {
     >
         Hey! This will be much better with sensors. Allow?
     </button>
-    <div id="output_message">${MotionApproval.output_message}</div>
+    <div id="output_message">{MotionApproval.output_message}</div>
+    {#if MotionApproval.debugInfo}
+        <div id="debug_info" style="font-size: 0.75em; opacity: 0.6">{MotionApproval.debugInfo}</div>
+    {/if}
 </div>
