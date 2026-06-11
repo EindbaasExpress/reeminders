@@ -89,13 +89,13 @@ onMount(() => {
             style="padding: 1em 2em"
             onclick={checkMotionPermission}
         >
-            Hey! This will be much better with sensors. Allow?
+            Allow motion sensors to shake for a new quote!
         </button>
     {/if}
-    {#if MotionApproval.output_message}
+    <!-- {#if MotionApproval.output_message}
         <div id="output_message">{MotionApproval.output_message}</div>
     {/if}
     {#if MotionApproval.debugInfo}
         <div id="debug_info" style="font-size: 0.75em; opacity: 0.6">{MotionApproval.debugInfo}</div>
-    {/if}
+    {/if} -->
 </div>
