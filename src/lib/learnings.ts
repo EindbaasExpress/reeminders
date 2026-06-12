@@ -17,11 +17,10 @@ export const learnings: Learning[] = [
 	{ title: 'Feedback regel 3', message: 'Werk toe naar een oplossing door te vragen wat de ander concreet anders zou kunnen doen' },
 	{ title: 'Feedback regel 4', message: 'Vraag nooit `waarom..`, maar `wat maakt..` of `hoe komt het dat..`' },
 	{ title: 'Faciliteren is het bieden van een podium', message: 'Faciliteren betekent begeleiden zonder te sturen of te helpen' },
-	{ title: 'Situationeel leiderschap S1', message: 'Instrueren: Weinig Ervaring = Veel sturing, weinig ondersteuning' },
-	{ title: 'Situationeel leiderschap S2', message: 'Begeleiden: Enige Ervaring = Veel sturing en veel ondersteuning -> Coaching' },
-	{ title: 'Situationeel leiderschap S3', message: 'Overleggen: Ervaren = Weinig sturing, veel ondersteuning -> Coaching' },
-	{ title: 'Situationeel leiderschap S4', message: 'Delegeren: Zeer ervaren = Weinig sturing, weinig ondersteuning' },
-
+	{ title: 'Situationeel leiderschap S1', message: 'Weinig Ervaring = Veel sturing, weinig ondersteuning (Instrueren)' },
+	{ title: 'Situationeel leiderschap S2', message: 'Enige Ervaring = Veel sturing en veel ondersteuning (Begeleiden)' },
+	{ title: 'Situationeel leiderschap S3', message: 'Ervaren = Weinig sturing, veel ondersteuning (Overleggen)' },
+	{ title: 'Situationeel leiderschap S4', message: 'Zeer ervaren = Weinig sturing, weinig ondersteuning (Delegeren)' },
 ];
 
 let lastLearningIndex = -1;
