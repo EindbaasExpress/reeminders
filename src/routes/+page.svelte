@@ -1,13 +1,13 @@
 <script lang="ts">
-	import QuoteDisplay from '$lib/QuoteDisplay.svelte';
-	import { getRandomQuote, type Quote } from '$lib/quotes';
+	import LearningDisplay from '$lib/LearningDisplay.svelte';
+	import { getRandomLearning, type Learning } from '$lib/learnings';
 	import MotionApproval from '$lib/MotionApproval.svelte';
 
-	let currentQuote: Quote = $state(getRandomQuote());
+	let currentLearning: Learning = $state(getRandomLearning());
 	let shaking = $state(false);
 
-	function handleQuoteChange() {
-		currentQuote = getRandomQuote();
+	function handleLearningChange() {
+		currentLearning = getRandomLearning();
 		// Subtle visual feedback
 		shaking = true;
 		setTimeout(() => {
@@ -18,8 +18,8 @@
 </script>
 
 <div class={shaking ? 'scale-95 transition-transform' : 'transition-transform'}>
-	<QuoteDisplay quote={currentQuote} onButtonClick={handleQuoteChange} />
-	<MotionApproval onshake={handleQuoteChange} />
+	<LearningDisplay learning={currentLearning} onButtonClick={handleLearningChange} />
+	<MotionApproval onshake={handleLearningChange} />
 </div>
 
 <style>

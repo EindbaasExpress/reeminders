@@ -1,11 +1,11 @@
-# Shake Quotes 📱
+# Shake Learnings 📱
 
-A mobile-first web app built with **Svelte 5** and **SvelteKit** that displays inspirational quotes. Shake your device to get a new random quote, or use the button on desktop.
+A mobile-first web app built with **Svelte 5** and **SvelteKit** that displays inspirational learnings. Shake your device to get a new random learning, or use the button on desktop.
 
 ## Features
 
 - 🤳 **Device shake detection** using shake.js
-- 🎯 **Random quote selection** with no consecutive repeats
+- 🎯 **Random learning selection** with no consecutive repeats
 - 📱 **Mobile optimized** UI with Tailwind CSS
 - 🧪 **Unit tests** with Vitest
 - 🚀 **GitHub Pages deployment** via GitHub Actions
@@ -24,7 +24,7 @@ npm run dev
 To test on mobile:
 1. Get your dev machine's IP: `ifconfig | grep inet`
 2. Visit `http://<your-ip>:5173` on your phone
-3. Shake your device to see new quotes!
+3. Shake your device to see new learnings!
 
 ### Testing
 
@@ -45,8 +45,8 @@ npm run preview     # Preview production build locally
 ```
 src/
 ├── lib/
-│   ├── quotes.ts           # Quote data and selection logic
-│   └── QuoteDisplay.svelte # Quote display component
+│   ├── learnings.ts           # Learning data and selection logic
+│   └── LearningDisplay.svelte # Learning display component
 ├── routes/
 │   ├── +page.svelte        # Main page with shake integration
 │   └── layout.css          # Global styles
@@ -75,14 +75,14 @@ The workflow is defined in `.github/workflows/deploy.yml`
 
 ## Customization
 
-### Add More Quotes
+### Add More Learnings
 
-Edit `src/lib/quotes.ts`:
+Edit `src/lib/learnings.ts`:
 
 ```typescript
-export const quotes: Quote[] = [
+export const learnings: Learning[] = [
   { title: 'Your Title', message: 'Your inspirational message' },
-  // Add more quotes...
+  // Add more learnings...
 ];
 ```
 

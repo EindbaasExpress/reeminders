@@ -2,17 +2,13 @@
     import { onMount } from 'svelte';
 
     interface MotionApprovalState {
-        output_message: string | undefined,
         granted: boolean | null,
-        debugInfo: string | undefined,
     }
 
     let { onshake } = $props();
 
     let MotionApproval: MotionApprovalState = $state({
-        output_message: undefined,
         granted: null,
-        debugInfo: undefined,
     });
 
 function setMotionListeners() {
@@ -22,25 +18,41 @@ function setMotionListeners() {
         console.log('Device orientation event: %O', event)
     })
 
-    // MOTION LISTENER
+    // DOUBLE-SHAKE DETECTION
+    let lastX = 0, lastY = 0, lastZ = 0;
+    let lastTime = 0;
+    const shakeThreshold = 15; // lower = more sensitive
+    let shakeCount = 0;
+    let shakeTimeout: ReturnType<typeof setTimeout> | null = null;
+    const maxInterval = 1500; // ms window to register second shake
+
     window.addEventListener('devicemotion', event => {
-        const alpha = Math.abs(event.rotationRate?.alpha ?? 0);
-        const beta  = Math.abs(event.rotationRate?.beta  ?? 0);
-        const gamma = Math.abs(event.rotationRate?.gamma ?? 0);
+        const { x, y, z } = event.accelerationIncludingGravity ?? {};
+        const currentTime = Date.now();
 
-        // Show live sensor values on-screen to help debug on mobile
-        MotionApproval.debugInfo = `α:${alpha.toFixed(1)} β:${beta.toFixed(1)} γ:${gamma.toFixed(1)}`;
+        if ((currentTime - lastTime) > 100) {
+            const deltaX = Math.abs((x ?? 0) - lastX);
+            const deltaY = Math.abs((y ?? 0) - lastY);
+            const deltaZ = Math.abs((z ?? 0) - lastZ);
 
-        // SHAKE EVENT
-        // Using rotationRate, which essentially is velocity,
-        // we check each axis (alpha, beta, gamma) whether they cross a threshold (e.g. 256).
-        // Lower = more sensitive, higher = less sensitive. 256 works nice, imho.
-        if (alpha > 256 || beta > 256 || gamma > 256) {
-            MotionApproval.output_message = "SHAKEN!"
-            onshake?.();
-            setTimeout(() => {
-                MotionApproval.output_message = undefined
-            }, 2000)
+            if ((deltaX + deltaY + deltaZ) > shakeThreshold) {
+                shakeCount += 1;
+
+                if (shakeCount === 1) {
+                    shakeTimeout = setTimeout(() => {
+                        shakeCount = 0;
+                    }, maxInterval);
+                } else if (shakeCount === 2) {
+                    if (shakeTimeout !== null) clearTimeout(shakeTimeout);
+                    shakeCount = 0;
+                    onshake?.();
+                }
+            }
+
+            lastX = x ?? 0;
+            lastY = y ?? 0;
+            lastZ = z ?? 0;
+            lastTime = currentTime;
         }
     })
 }
@@ -89,7 +101,7 @@ onMount(() => {
             style="padding: 1em 2em"
             onclick={checkMotionPermission}
         >
-            Allow motion sensors to shake for a new quote!
+            Allow motion sensors to shake for a new learning!
         </button>
     {/if}
     <!-- {#if MotionApproval.output_message}

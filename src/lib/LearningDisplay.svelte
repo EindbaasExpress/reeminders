@@ -1,8 +1,8 @@
 <script lang="ts">
 	import MotionApproval from './MotionApproval.svelte';
-	import type { Quote } from './quotes';
+	import type { Learning } from './learnings';
 
-	let { quote, onButtonClick }: { quote: Quote; onButtonClick: () => void } = $props();
+	let { learning, onButtonClick }: { learning: Learning; onButtonClick: () => void } = $props();
 
 	interface Snowflake {
 		id: number;
@@ -42,21 +42,21 @@
 		<h1 class="text-4xl md:text-3xl font-bold text-blue-800 mb-6 transition-all duration-500">Reeminders</h1>
 
 		<h2 class="text-5xl md:text-6xl font-bold text-blue-600 mb-6 transition-all duration-500">
-			{quote.title}
+			{learning.title}
 		</h2>
 
 		<p class="text-2xl md:text-3xl text-blue-800 mb-12 max-w-md mx-auto leading-relaxed transition-all duration-500">
-			{quote.message}
+			{learning.message}
 		</p>
 
 		<button
 			onclick={handleButtonClick}
 			class="px-8 py-4 bg-blue-500 hover:bg-blue-600 text-white font-bold rounded-lg transition-all duration-200 transform hover:scale-105 active:scale-95 shadow-lg"
 		>
-			Get Another Quote
+			Meer!
 		</button>
 
-		<p class="text-sm text-blue-500 mt-8">Or shake your device (tested on iOS Safari) 📱</p>
+		<p class="text-sm text-blue-500 mt-8">Of schud je apparaat (getest op iOS Safari) 📱</p>
 		<MotionApproval onshake={handleButtonClick} />
 	</div>
 </div>
