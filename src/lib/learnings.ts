@@ -12,15 +12,15 @@ export const learnings: Learning[] = [
 	{ title: 'Coach met GROW en open vragen', message: 'Goal (wat wil je?), Reality (wat is de huidige situatie?), Options (wat zijn de mogelijkheden?), Will (wat ga je concreet doen?)' },
 	{ title: 'Wees concreet in oplossingen', message: 'Er is geen wij in een jij-probleem, wat ga jij doen om het op te lossen?' },
 	{ title: 'Erken overtuigingen van de ander', message: 'Erken de overtuigingen van de ander, ook als je het er niet mee eens bent' },
-	{ title: 'Feedback', message: 'Hou het feitelijk en rond af met `herken je dat?`' },
-	{ title: 'Feedback', message: 'Benoem het effect van het gedrag (op jou, het project, het team) en sluit daarna af met `Kun je dat begrijpen?`' },
-	{ title: 'Feedback', message: 'Werk toe naar een oplossing door te vragen wat de ander concreet anders zou kunnen doen' },
-	{ title: 'Feedback', message: 'Vraag nooit `waarom..`, maar `wat maakt..` of `hoe komt het dat..`' },
+	{ title: 'Feedback #1', message: 'Hou het feitelijk en rond af met `herken je dat?`' },
+	{ title: 'Feedback #2', message: 'Benoem het effect van het gedrag (op jou, het project, het team) en sluit daarna af met `Kun je dat begrijpen?`' },
+	{ title: 'Feedback #3', message: 'Werk toe naar een oplossing door te vragen wat de ander concreet anders zou kunnen doen' },
+	{ title: 'Feedback #4', message: 'Vraag nooit `waarom..`, maar `wat maakt..` of `hoe komt het dat..`' },
 	{ title: 'Faciliteren is het bieden van een podium', message: 'Faciliteren betekent begeleiden zonder te sturen of te helpen' },
-	{ title: 'Situationeel leiderschap', message: 'Weinig ervaring = veel sturing, weinig ondersteuning (Instrueren)' },
-	{ title: 'Situationeel leiderschap', message: 'Enige ervaring = veel sturing en veel ondersteuning (Begeleiden)' },
-	{ title: 'Situationeel leiderschap', message: 'Ervaren = weinig sturing, veel ondersteuning (Overleggen)' },
-	{ title: 'Situationeel leiderschap', message: 'Zeer ervaren = weinig sturing, weinig ondersteuning (Delegeren)' },
+	{ title: 'Situationeel leiderschap #1', message: 'Weinig ervaring = veel sturing, weinig ondersteuning (Instrueren)' },
+	{ title: 'Situationeel leiderschap #2', message: 'Enige ervaring = veel sturing en veel ondersteuning (Begeleiden)' },
+	{ title: 'Situationeel leiderschap #3', message: 'Ervaren = weinig sturing, veel ondersteuning (Overleggen)' },
+	{ title: 'Situationeel leiderschap #4', message: 'Zeer ervaren = weinig sturing, weinig ondersteuning (Delegeren)' },
 ];
 
 let lastLearningIndex = -1;
