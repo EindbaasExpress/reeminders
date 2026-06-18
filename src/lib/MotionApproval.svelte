@@ -100,6 +100,7 @@ onMount(() => {
             id="btn_reqPermission"
             style="padding: 1em 2em"
             onclick={checkMotionPermission}
+            class="px-8 py-4 bg-blue-500 hover:bg-blue-600 text-white font-bold rounded-lg transition-all duration-200 transform hover:scale-105 active:scale-95 shadow-lg"
         >
             Allow motion sensors to shake for a new learning!
         </button>
