@@ -10,10 +10,12 @@ const config = {
 		paths: {
 			base: '/reeminders'
 		},
+		prerender: {
+			entries: ['*']
+		},
 		adapter: adapter({
 			pages: 'build',
 			assets: 'build',
-			fallback: 'index.html',
 			precompress: false,
 			strict: true
 		})
