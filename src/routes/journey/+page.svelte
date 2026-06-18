@@ -2,6 +2,26 @@
     <title>Leadership Journey</title>
 </svelte:head>
 
+<script lang="ts">
+    import { onMount } from 'svelte';
+    import QRCode from 'qrcode';
+
+    let qrCanvas: HTMLCanvasElement | undefined;
+
+    onMount(async () => {
+        if (qrCanvas) {
+            await QRCode.toCanvas(qrCanvas, 'https://eindbaasexpress.github.io/reeminders/reeminders', {
+                width: 200,
+                margin: 2,
+                color: {
+                    dark: '#667eea',
+                    light: '#ffffff'
+                }
+            });
+        }
+    });
+</script>
+
 <main class="journey-container">
     <div class="background-elements">
         <div class="orb orb-1"></div>
@@ -62,6 +82,14 @@
             <div class="reflection-item next">
                 <h3>→ Next Steps</h3>
                 <p>Improve coaching skills to better develop team members and support their growth</p>
+            </div>
+        </section>
+
+        <section class="qr-section">
+            <h2>📱 What I have Learned</h2>
+            <div class="qr-container">
+                <canvas bind:this={qrCanvas}></canvas>
+                <p>Scan to visit the Reeminders app</p>
             </div>
         </section>
     </div>
@@ -399,5 +427,47 @@
         .pillar-icon {
             font-size: 2rem;
         }
+    }
+
+    .qr-section {
+        margin-top: 3rem;
+        text-align: center;
+    }
+
+    .qr-section h2 {
+        color: white;
+        font-size: 1.5rem;
+        margin-bottom: 1.5rem;
+        animation: slideInLeft 0.6s ease-out;
+        text-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        font-weight: 600;
+    }
+
+    .qr-container {
+        background: white;
+        padding: 2rem;
+        border-radius: 1rem;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        display: inline-block;
+        animation: slideInUp 0.6s ease-out 0.8s both;
+        transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    .qr-container:hover {
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        transform: translateY(-8px);
+    }
+
+    .qr-container canvas {
+        display: block;
+        margin: 0 auto 1rem;
+        border-radius: 0.5rem;
+    }
+
+    .qr-container p {
+        margin: 0;
+        color: #666;
+        font-size: 0.9rem;
+        font-weight: 500;
     }
 </style>
